@@ -253,7 +253,53 @@ The project produces the following outputs:
 - Music selection output — Selected cluster, dominant category, music style, and song
 - Final slideshow video — Video created from the selected cluster with matching background music
 
-## 12. Conclusion
+## Installation Instructions
+
+### 1. Requirements
+
+- Python 3.10 or later
+- pip (Python package manager)
+
+### 2. Install Dependencies
+
+Open a terminal in the project directory and run:
+
+```bash
+python3 -m pip install numpy torch torchvision scikit-learn matplotlib pillow
+```
+
+These libraries are used for:
+
+| Library | Purpose |
+|---|---|
+| NumPy | Store and process extracted image features and cluster labels |
+| PyTorch | Run the pretrained ResNet18 neural network |
+| torchvision | Load CIFAR-10, preprocess images, and access ResNet18 |
+| scikit-learn | Perform K-Means clustering |
+| Matplotlib | Analyze and visualize images and clusters |
+| Pillow | Load and process image files |
+
+### 3. Run the Project
+
+Execute the scripts in the following order:
+
+```bash
+python3 download_dataset.py
+python3 analyze_dataset.py
+python3 extract_features.py
+python3 cluster_images.py
+python3 visualize_clusters.py
+python3 select_music.py
+```
+
+The program downloads the dataset, analyzes the images, extracts features, performs clustering, generates cluster visualizations, and selects background music algorithmically.
+
+### 4. Video Creation
+
+Use the selected cluster images to create a slideshow in CapCut and add the song selected by `select_music.py`. Export the completed video as an MP4 file.
+
+
+# 12. Conclusion
 
 This project demonstrates how machine learning can be used to organize images into meaningful groups and select suitable background music.
 
