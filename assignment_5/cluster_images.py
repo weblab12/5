@@ -1,4 +1,3 @@
-
 import numpy as np
 from sklearn.cluster import KMeans
 
@@ -28,4 +27,3 @@ for cluster_id in range(NUM_CLUSTERS):
 # Save each image's assigned cluster ID for later visualization and video generation.
 np.save("cluster_labels.npy", cluster_labels)
 
-print("Cluster assignments saved to cluster_labels.npy")

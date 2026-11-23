@@ -1,13 +1,3 @@
-"""
-Feature Extraction — CIFAR-10
-
-Uses a pretrained ResNet-18 convolutional neural network
-to extract numerical feature vectors from dataset images.
-
-These vectors will be used to compare image similarities
-and perform clustering.
-"""
-
 import torch
 from torchvision import models, transforms # this gives us the model we use
 from PIL import Image # helps to open image
@@ -43,19 +33,14 @@ features = []
 
 # Disable gradient calculations because we are only extracting features.
 with torch.no_grad():
-
     # Process each image in the dataset.
     for image_path in image_paths:
-
         # Open the image and ensure it has three RGB color channels.
         image = Image.open(image_path).convert("RGB")
-
         # Apply ResNet-18 preprocessing and add a batch dimension.
         input_tensor = preprocess(image).unsqueeze(0)
-
         # Pass the image through ResNet-18 to extract its 512 features.
         feature_vector = model(input_tensor)
-
         # Convert the tensor into a NumPy array and store its features.
         features.append(feature_vector.squeeze(0).numpy())
 

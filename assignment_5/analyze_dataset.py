@@ -1,37 +1,21 @@
-"""
-Initial Dataset Analysis — CIFAR-10
-
-Displays sample images from each category to examine
-visual patterns in the selected dataset.
-"""
-
 from pathlib import Path
 from PIL import Image
 import matplotlib.pyplot as plt
 
-
-# Dataset configuration
 DATASET_DIR = Path("./dataset")
 
 # Find all category directories inside the dataset folder.
 categories = sorted(
     # Iterate through every file and directory inside DATASET_DIR.
     directory for directory in DATASET_DIR.iterdir()
-
-    # Keep only directories and exclude the original CIFAR-10 extracted data.
     if directory.is_dir() and directory.name != "cifar-10-batches-py"
 )
 
-# Display the total number of category directories found.
 print(f"Number of categories: {len(categories)}")
 
 # Go through each category directory to count its images.
 for category in categories:
-
-    # Find all PNG files in the current category and store them in a list.
-    images = list(category.glob("*.png"))
-
-    # Display the category name and the number of images it contains.
+    images = list(category.glob("*.png"))# Find all PNG files in the current category and store them in a list.
     print(f"{category.name}: {len(images)} images")
 
 

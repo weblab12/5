@@ -1,8 +1,3 @@
-
-"""
-Visualize all K-Means clusters to evaluate image similarities.
-"""
-
 from pathlib import Path
 import math
 import numpy as np
@@ -16,13 +11,12 @@ cluster_labels = np.load("cluster_labels.npy")            # Load the cluster IDs
 print(f"Total images: {len(image_paths)}")
 print(f"Total cluster assignments: {len(cluster_labels)}")
 
-assert len(image_paths) == len(cluster_labels), "Image and label counts do not match."  # Verify one label per image.
+if len(image_paths) != len(cluster_labels):
+    raise "label counts do not match."  # Verify one label per image.
 
 
 for cluster_id in sorted(np.unique(cluster_labels)):  # Process each cluster automatically.
-
     cluster_indices = np.where(cluster_labels == cluster_id)[0]  # Find image positions belonging to this cluster.
-
     print(f"Cluster {cluster_id} contains {len(cluster_indices)} images")
 
     columns = 5                                        # Display a maximum of five images per row.
