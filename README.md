@@ -253,51 +253,70 @@ The project produces the following outputs:
 - Music selection output — Selected cluster, dominant category, music style, and song
 - Final slideshow video — Video created from the selected cluster with matching background music
 
-## Installation Instructions
+## Installation and Execution
 
-### 1. Requirements
-
-- Python 3.10 or later
-- pip (Python package manager)
-
-### 2. Install Dependencies
-
-Open a terminal in the project directory and run:
+### Install Dependencies
 
 ```bash
-python3 -m pip install numpy torch torchvision scikit-learn matplotlib pillow
+pip install numpy torch torchvision scikit-learn matplotlib pillow
 ```
 
-These libraries are used for:
+### Run the Scripts
 
-| Library | Purpose |
+Execute the following commands from the project directory in order.
+
+**1. Download Dataset**
+```bash
+python download_dataset.py
+```
+
+**2. Analyze Dataset**
+```bash
+python analyze_dataset.py
+```
+
+**3. Extract Features**
+```bash
+python extract_features.py
+```
+
+**4. Perform K-Means Clustering**
+```bash
+python cluster_images.py
+```
+
+**5. Visualize Clusters**
+```bash
+python visualize_clusters.py
+```
+
+**6. Select Background Music**
+```bash
+python select_music.py
+```
+
+### Generated Outputs
+
+| File | Description |
 |---|---|
-| NumPy | Store and process extracted image features and cluster labels |
-| PyTorch | Run the pretrained ResNet18 neural network |
-| torchvision | Load CIFAR-10, preprocess images, and access ResNet18 |
-| scikit-learn | Perform K-Means clustering |
-| Matplotlib | Analyze and visualize images and clusters |
-| Pillow | Load and process image files |
+| `dataset/` | 210 CIFAR-10 images |
+| `dataset_samples.png` | Dataset sample visualization |
+| `features.npy` | Extracted 512-dimensional image features |
+| `cluster_labels.npy` | K-Means cluster assignments |
+| `cluster_0.png` – `cluster_9.png` | Cluster visualizations |
 
-### 3. Run the Project
+### Music Selection Output
 
-Execute the scripts in the following order:
-
-```bash
-python3 download_dataset.py
-python3 analyze_dataset.py
-python3 extract_features.py
-python3 cluster_images.py
-python3 visualize_clusters.py
-python3 select_music.py
+```text
+Selected cluster: 3
+Dominant category: automobile
+Selected music style: energetic
+Selected song: Danza Kuduro
 ```
 
-The program downloads the dataset, analyzes the images, extracts features, performs clustering, generates cluster visualizations, and selects background music algorithmically.
+### Video Creation
 
-### 4. Video Creation
-
-Use the selected cluster images to create a slideshow in CapCut and add the song selected by `select_music.py`. Export the completed video as an MP4 file.
-
+Create a slideshow in CapCut using images from the selected cluster. Add the algorithm-selected song and export the video in MP4 format.
 
 # 12. Conclusion
 
