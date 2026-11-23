@@ -33,26 +33,19 @@ features = []
 
 # Disable gradient calculations because we are only extracting features.
 with torch.no_grad():
-    # Process each image in the dataset.
     for image_path in image_paths:
-        # Open the image and ensure it has three RGB color channels.
         image = Image.open(image_path).convert("RGB")
-        # Apply ResNet-18 preprocessing and add a batch dimension.
         input_tensor = preprocess(image).unsqueeze(0)
-        # Pass the image through ResNet-18 to extract its 512 features.
         feature_vector = model(input_tensor)
-        # Convert the tensor into a NumPy array and store its features.
         features.append(feature_vector.squeeze(0).numpy())
 
 print(f"Feature vectors extracted: {len(features)}")
 print(f"Features per image: {len(features[0])}")
 
 
-# Convert the list of feature vectors into a NumPy matrix.
 feature_matrix = np.array(features)
 
-# Save the feature matrix for the clustering stage.
+
 np.save("features.npy", feature_matrix)
 
-# Confirm the dimensions of the saved matrix.
 print(f"Feature matrix shape: {feature_matrix.shape}")
